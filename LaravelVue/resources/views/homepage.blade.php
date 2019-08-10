@@ -3,8 +3,13 @@
 @section('content')
 <div class="container">
     <div class="jumbotron" id="jumbotron_index">
-        <h1>Bootstrap Tutorial</h1> 
-        <p>Bootstrap is the most popular HTML, CSS...</p> 
+        <!--router-link to="/foo">Go to Foo</!--router-link>
+        <router-link-- to="/bar">Go to Bar</router-link-->
+        <div class="text-center">
+            <h1> Jaya901 LaraVue</h1>
+            <p>CRUD SIMPLE APK LARAVEL + VUE.JS</p>
+        </div>
+        <router-view></router-view> 
     </div>
 </div>
 @endsection
