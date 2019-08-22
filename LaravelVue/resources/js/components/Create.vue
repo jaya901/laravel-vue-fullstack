@@ -4,12 +4,12 @@
             <div class="card-header" style="text-align:center">Create New</div>
 
             <div class="card-body">
-                <form>
+                <form v-on:submit="submitPost()">
                     <div class="form-group">
-                        <input type="text" name="" placeholder="Title" class="form-control">
+                        <input type="text" v-model="posts.title" placeholder="Title" class="form-control">
                     </div>
                     <div class="form-group">
-                        <textarea rows="5" type="text" name="" placeholder="Description" class="form-control"></textarea>
+                        <textarea rows="5" type="text" v-model="posts.description" placeholder="Description" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
                         <router-link class="btn btn-warning" to="/">Cancel</router-link>
@@ -23,8 +23,28 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
+        data:function() {
+            return {
+                posts: {
+                    title:'',
+                    description:'',
+                },
+                errors: []
+            }
+        },
+
+        methods:{
+            submitPost() {
+                axios.post('/posts', this.posts)
+                .then(response => {
+                    console.log(response)
+                    this.$router.push({path:'/'})
+                    this.posts = response.data
+                })
+                .catch(e => {
+                    this.errors.push(e)
+                })
+            }
         }
     }
 </script>
